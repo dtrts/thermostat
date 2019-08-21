@@ -22,7 +22,7 @@ describe('Thermostat', function () {
   });
 
   it('cannot decrease temp below 10deg', function () {
-    Expect(function () {
+    expect(function () {
       thermo.down(11)
     }).toThrowError('Unable to set temperature.')
   });
