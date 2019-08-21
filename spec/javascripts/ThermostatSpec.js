@@ -77,6 +77,15 @@ describe('Thermostat', function () {
     expect(thermo.temp).toEqual(20);
   });
 
+  it('displays the current_usage', function () {
+    thermo.temp = 25
+    expect(thermo.energy_usage()).toEqual('high')
+    thermo.temp = 24
+    expect(thermo.energy_usage()).toEqual('medium')
+    thermo.temp = 17
+    expect(thermo.energy_usage()).toEqual('low')
+
+  });
 
 
 
