@@ -16,10 +16,10 @@ describe('Thermostat', function () {
     expect(thermo.temp).toEqual(20 + increase_by);
   });
 
-  it('increases temp with down function', function () {
+  it('decreases temp with down function', function () {
     var decrease_by = Math.floor(Math.random() * 9);
-    thermo.up(decrease_by);
-    expect(thermo.temp).toEqual(20 + decrease_by);
+    thermo.down(decrease_by);
+    expect(thermo.temp).toEqual(20 - decrease_by);
   });
 
   it('cannot decrease temp below 10deg', function () {
@@ -36,7 +36,7 @@ describe('Thermostat', function () {
     }).toThrowError('Unable to set temperature.');
   });
 
-  describe('power saving is off', function() {
+  describe('power saving is off', function () {
 
     beforeEach(function () {
       thermo.switch_power_saving();
@@ -51,9 +51,7 @@ describe('Thermostat', function () {
 
   });
 
-  
-
-  // POWERSAVING
+  // POWER SAVING
   it('starts with power saving on', function () {
     expect(thermo.power_saving).toEqual(true);
   });
@@ -65,5 +63,11 @@ describe('Thermostat', function () {
     expect(thermo.power_saving).toEqual(true);
   });
 
+  it('resets temp on button push', function () {
+    thermo.up(5)
+    expect(thermo.temp).toEqual(25);
+    thermo.reset();
+    expect(thermo.temp).toEqual(20);
+  });
 
 });

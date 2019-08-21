@@ -10,14 +10,14 @@ var Thermostat = function () {
 Thermostat.prototype = {
 
   up: function (increase_by) {
-    if (this.temp + increase_by > this.max_temp) {
+    if ((this.temp + increase_by) > this.max_temp) {
       throw new Error('Unable to set temperature.');
     }
     this.temp += increase_by;
   },
 
   down: function (decrease_by) {
-    if (this.temp - decrease_by < this.min_temp) {
+    if ((this.temp - decrease_by) < this.min_temp) {
       throw new Error('Unable to set temperature.');
     }
     this.temp -= decrease_by;
