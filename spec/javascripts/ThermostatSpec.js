@@ -49,6 +49,13 @@ describe('Thermostat', function () {
       }).toThrowError('Unable to set temperature.');
     });
 
+    it('brings the tmp down to the the max when switching powersaving on', function () {
+      thermo.up(10);
+      expect(thermo.temp).toEqual(30);
+      thermo.switch_power_saving();
+      expect(thermo.temp).toEqual(25);
+    });
+
   });
 
   // POWER SAVING
@@ -69,5 +76,8 @@ describe('Thermostat', function () {
     thermo.reset();
     expect(thermo.temp).toEqual(20);
   });
+
+
+
 
 });
