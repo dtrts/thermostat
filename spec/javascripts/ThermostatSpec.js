@@ -11,28 +11,29 @@ describe('Thermostat', function () {
   });
 
   it('increases temp with up function', function () {
-    var increase_by = Math.floor(Math.random() * 12)
-    thermo.up(increase_by)
-    expect(thermo.temp).toEqual(20 + increase_by)
+    var increase_by = Math.floor(Math.random() * 11);
+    thermo.up(increase_by);
+    expect(thermo.temp).toEqual(20 + increase_by);
   });
+
   it('increases temp with down function', function () {
-    var decrease_by = Math.floor(Math.random() * 10) - 1
-    thermo.up(decrease_by)
-    expect(thermo.temp).toEqual(20 + decrease_by)
+    var decrease_by = Math.floor(Math.random() * 9);
+    thermo.up(decrease_by);
+    expect(thermo.temp).toEqual(20 + decrease_by);
   });
 
   it('cannot decrease temp below 10deg', function () {
-    expect(thermo.min_temp).toEqual(10)
+    expect(thermo.min_temp).toEqual(10);
     expect(function () {
-      thermo.down(11)
-    }).toThrowError('Unable to set temperature.')
+      thermo.down(11);
+    }).toThrowError('Unable to set temperature.');
   });
 
   it('cannot increase temp above 32deg', function () {
-    expect(thermo.max_temp).toEqual(32)
+    expect(thermo.max_temp).toEqual(32);
     expect(function () {
-      thermo.down(11)
-    }).toThrowError('Unable to set temperature.')
+      thermo.up(13);
+    }).toThrowError('Unable to set temperature.');
   });
 
   // POWERSAVING
