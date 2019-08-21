@@ -32,7 +32,17 @@ Thermostat.prototype = {
   },
 
   reset: function () {
-    this.temp = 20
+    this.temp = 20;
   },
 
+  energy_usage: function () {
+    if (this.temp < 18) {
+      return 'low';
+    } else if (this.temp < 25) {
+      return 'medium';
+    } else {
+      return 'high';
+    };
+
+  },
 };
