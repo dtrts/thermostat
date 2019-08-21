@@ -28,4 +28,17 @@ describe('Thermostat', function () {
     }).toThrowError('Unable to set temperature.')
   });
 
+  // POWERSAVING
+  it('starts with power saving off', function () {
+    expect(thermo.power_saving).toEqual(false);
+  });
+
+  it('power saving can be switched off and on', function () {
+    thermo.set_power_saving(true);
+    expect(thermo.power_saving).toEqual(true);
+    thermo.set_power_saving(false);
+    expect(thermo.power_saving).toEqual(false);
+  });
+
+
 });
