@@ -3,8 +3,8 @@
 var Thermostat = function () {
   this.temp = 20;
   this.min_temp = 10;
-  this.max_temp = 32;
-  this.power_saving = false;
+  this.max_temp = 25;
+  this.power_saving = true;
 };
 
 Thermostat.prototype = {
@@ -23,8 +23,9 @@ Thermostat.prototype = {
     this.temp -= decrease_by;
   },
 
-  set_power_saving: function (set) {
-    this.power_saving = set;
+  switch_power_saving: function () {
+    this.power_saving = !this.power_saving;
+    this.max_temp = this.power_saving ? 25 : 32;
   }
 
 };

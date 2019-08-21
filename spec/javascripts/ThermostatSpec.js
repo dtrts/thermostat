@@ -11,7 +11,7 @@ describe('Thermostat', function () {
   });
 
   it('increases temp with up function', function () {
-    var increase_by = Math.floor(Math.random() * 11);
+    var increase_by = Math.floor(Math.random() * 5);
     thermo.up(increase_by);
     expect(thermo.temp).toEqual(20 + increase_by);
   });
@@ -29,23 +29,40 @@ describe('Thermostat', function () {
     }).toThrowError('Unable to set temperature.');
   });
 
-  it('cannot increase temp above 32deg', function () {
-    expect(thermo.max_temp).toEqual(32);
+  it('cannot increase temp above 25deg when on powersaving mode', function () {
+    expect(thermo.max_temp).toEqual(25);
     expect(function () {
       thermo.up(13);
     }).toThrowError('Unable to set temperature.');
   });
 
+  describe('power saving is off', function() {
+
+    beforeEach(function () {
+      thermo.switch_power_saving();
+    });
+
+    it('cannot increase temp above 32deg when on default', function () {
+      expect(thermo.max_temp).toEqual(32);
+      expect(function () {
+        thermo.up(13);
+      }).toThrowError('Unable to set temperature.');
+    });
+
+  });
+
+  
+
   // POWERSAVING
-  it('starts with power saving off', function () {
-    expect(thermo.power_saving).toEqual(false);
+  it('starts with power saving on', function () {
+    expect(thermo.power_saving).toEqual(true);
   });
 
   it('power saving can be switched off and on', function () {
-    thermo.set_power_saving(true);
-    expect(thermo.power_saving).toEqual(true);
-    thermo.set_power_saving(false);
+    thermo.switch_power_saving();
     expect(thermo.power_saving).toEqual(false);
+    thermo.switch_power_saving();
+    expect(thermo.power_saving).toEqual(true);
   });
 
 
