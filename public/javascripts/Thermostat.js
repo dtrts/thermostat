@@ -26,6 +26,10 @@ Thermostat.prototype = {
   switch_power_saving: function () {
     this.power_saving = !this.power_saving;
     this.max_temp = this.power_saving ? 25 : 32;
-  }
+  },
+
+  reset: function () {
+    this.temp = 20
+  },
 
 };
