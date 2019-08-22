@@ -3,6 +3,12 @@ $(document).ready(function () {
   var message_timeout;
   var thermo = new Thermostat();
 
+  $("#up-1-button").click(up_1_click);
+  $("#down-1-button").click(down_1_click);
+  $("#reset-button").click(reset_click);
+  $("#switch-power-saving-button").click(switch_power_saving_click);
+  display_current_temp();
+
 
   function set_default_message() {
     $("#message-display").text("Thermostat!");
@@ -18,7 +24,6 @@ $(document).ready(function () {
     $("#temp-display").text(thermo.temp);
   }
 
-  display_current_temp();
 
   function up_1_click() {
     clearInterval(message_timeout);
@@ -60,10 +65,5 @@ $(document).ready(function () {
     display_current_temp();
     message_timeout = default_message_timeout()
   }
-
-  $("#up-1-button").click(up_1_click);
-  $("#down-1-button").click(down_1_click);
-  $("#reset-button").click(reset_click);
-  $("#switch-power-saving-button").click(switch_power_saving_click);
 
 });
