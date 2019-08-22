@@ -8,7 +8,7 @@
 
 }
 
-#main {
+main {
   max-width: 600px;
   margin: 20px auto;
   padding: 50px;
@@ -49,6 +49,14 @@
 #temp-display {
   font-size: 400%;
 }
+
+select,
+option {
+  display: inline;
+  font-size: 100%;
+  padding: 10px;
+}
+
 
 #controls div {
   margin: 20px auto;

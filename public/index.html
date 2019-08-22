@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <div id="main">
+  <main>
 
     <div id="thermostat">
 
@@ -21,6 +21,19 @@
         <div id="power-saving-mode-display"></div>
         <div id="energy-usage-display"></div>
       </div>
+      <div>
+
+        <div id="location-temperature">
+          <select id="current-city">
+            <option value="london">London</option>
+            <option value="new+york">New York</option>
+            <option value="paris">Paris</option>
+            <option value="tokyo">Tokyo</option>
+          </select>
+          <div id="location-temperature-display">Current temperature: <span id="current-temperature"></span></div>
+        </div>
+      </div>
+
       <div id="controls">
         <div id="temp-controls">
 
@@ -28,12 +41,13 @@
           <div id="reset-control"><button id="reset-button">Reset Temp</button></div>
           <div id="up-1-control"><button id="up-1-button">Temp + 1</button></div>
         </div>
-        <div id="switch-power-saving-control"><button id="switch-power-saving-button">Power Saver Switch</button></div>
+        <div id="switch-power-saving-control"><button id="switch-power-saving-button">Power Saver Switch</button>
+        </div>
       </div>
       <div id='message-display'>You're lookin' fine today oooooh yeah. </div>
     </div>
 
-  </div>
+  </main>
 
 </body>
 
