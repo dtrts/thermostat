@@ -37,12 +37,12 @@ Thermostat.prototype = {
 
   energy_usage: function () {
     if (this.temp < 18) {
-      return 'low';
+      return 'Low';
     } else if (this.temp < 25) {
-      return 'medium';
+      return 'Medium';
     } else {
-      return 'high';
-    };
+      return 'High';
+    }
 
   },
 };

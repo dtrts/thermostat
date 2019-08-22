@@ -1,0 +1,30 @@
+body {
+  color: rgb(255, 212, 70);
+  background-image: url('https://bit.ly/33Mhy93');
+  font-size: 3em;
+}
+
+div {
+  margin: 20px;
+  text-align: center;
+  font-family: 'Saira Stencil One', cursive;
+}
+
+button {
+  padding: 2%;
+  background-color: blueviolet;
+  color: rgb(188, 255, 244);
+  font-family: 'Orbitron', sans-serif;
+}
+
+#message-display {
+  padding: 30px 10px;
+  width: 70%;
+  height: 20%;
+  margin: 0 auto;
+  background-color: rgba(24, 247, 235, 0.527);
+}
+
+#message-text {
+  margin-top: 7%;
+}
