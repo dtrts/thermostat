@@ -1,0 +1,77 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 105%;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  overflow-wrap: break-word;
+
+}
+
+#main {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 50px;
+  border-width: 10px;
+  border-color: dimgrey;
+  border-style: ridge;
+  background-color: rgb(192, 192, 192);
+}
+
+#display {
+  max-width: 300px;
+  margin: 10px auto;
+  border-width: 5px;
+  border-color: rgb(255, 100, 152);
+  border-style: double;
+}
+
+#display.high {
+  background-color: rgb(240, 62, 62);
+}
+
+#display.medium {
+  background-color: rgb(235, 238, 76);
+
+}
+
+#display.low {
+  background-color: rgb(95, 230, 68);
+
+}
+
+#display div {
+  margin: 10px auto;
+  max-width: max-content;
+}
+
+
+#temp-display {
+  font-size: 400%;
+}
+
+#controls div {
+  margin: 20px auto;
+}
+
+#temp-controls {
+  max-width: max-content;
+  margin: auto;
+}
+
+#temp-controls div {
+  display: inline;
+}
+
+#switch-power-saving-control {
+  margin: auto;
+  max-width: max-content;
+}
+
+#message-display {
+  padding: 15px 15px;
+  border-color: rgb(96, 98, 255);
+  border-width: 3px;
+  border-style: solid;
+  background-color: rgb(169, 178, 255);
+}

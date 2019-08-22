@@ -7,28 +7,33 @@
   <script src="./javascripts/jquery-3.4.1.js"></script>
   <script src="./javascripts/Thermostat.js"></script>
   <script src="./javascripts/interface.js"></script>
-
+  <link rel="stylesheet" type="text/css" href="./style.css">
   <title>Thermostat</title>
 </head>
 
 <body>
+  <div id="main">
 
-  <div id="thermostat">
+    <div id="thermostat">
 
-    <div id="display">
-      <div id="temp-display"></div>
-      <div id="power-saving-mode-display">POWER SAVER IS on</div>
-      <div id="energy-usage-display">Medium</div>
+      <div id="display">
+        <div id="temp-display"></div>
+        <div id="power-saving-mode-display"></div>
+        <div id="energy-usage-display"></div>
+      </div>
+      <div id="controls">
+        <div id="temp-controls">
+
+          <div id="down-1-control"><button id="down-1-button">Temp - 1</button></div>
+          <div id="reset-control"><button id="reset-button">Reset Temp</button></div>
+          <div id="up-1-control"><button id="up-1-button">Temp + 1</button></div>
+        </div>
+        <div id="switch-power-saving-control"><button id="switch-power-saving-button">Power Saver Switch</button></div>
+      </div>
+      <div id='message-display'>You're lookin' fine today oooooh yeah. </div>
     </div>
-    <div id="controls">
-      <div id="up-1-control"><button id="up-1-button">Temp + 1</button></div>
-      <div id="reset-control"><button id="reset-button">Reset Temp</button></div>
-      <div id="down-1-control"><button id="down-1-button">Temp - 1</button></div>
-      <div id="switch-power-saving-control"><button id="switch-power-saving-button">Power Saver Switch</button></div>
-    </div>
-    <div id='message-display'>You're lookin' fine today oooooh yeah. </div>
+
   </div>
-
 
 </body>
 

@@ -2,16 +2,58 @@ $(document).ready(function () {
 
   var message_timeout;
   var thermo = new Thermostat();
+  var message_display = $("#message-display")
+  update_display();
+
 
   $("#up-1-button").click(up_1_click);
   $("#down-1-button").click(down_1_click);
   $("#reset-button").click(reset_click);
   $("#switch-power-saving-button").click(switch_power_saving_click);
-  display_current_temp();
 
+
+  function up_1_click() {
+    clearInterval(message_timeout);
+    try {
+      thermo.up(1);
+      message_display.text("Temperature increased");
+      update_display();
+    } catch (e) {
+      message_display.text("Maximum temperature reached.");
+    }
+    message_timeout = default_message_timeout()
+  }
+
+  function down_1_click() {
+    clearInterval(message_timeout);
+    try {
+      thermo.down(1);
+      message_display.text("Temperature decreased");
+      update_display();
+    } catch (e) {
+      message_display.text("Minimum temperature reached.");
+    }
+    message_timeout = default_message_timeout()
+  }
+
+  function reset_click() {
+    clearInterval(message_timeout);
+    thermo.reset()
+    message_display.text("Temperature reset");
+    update_display();
+    message_timeout = default_message_timeout()
+  }
+
+  function switch_power_saving_click() {
+    clearInterval(message_timeout);
+    thermo.switch_power_saving()
+    message_display.text(`Power saver switched ${thermo.power_saving ? "on" : "off"}`);
+    update_display();
+    message_timeout = default_message_timeout()
+  }
 
   function set_default_message() {
-    $("#message-display").text("Thermostat!");
+    message_display.text("Thermostat!");
   };
 
   function default_message_timeout() {
@@ -24,46 +66,19 @@ $(document).ready(function () {
     $("#temp-display").text(thermo.temp);
   }
 
-
-  function up_1_click() {
-    clearInterval(message_timeout);
-    try {
-      thermo.up(1);
-      $("#message-display").text("Temperature increased");
-      display_current_temp();
-    } catch (e) {
-      $("#message-display").text(e);
-    }
-    message_timeout = default_message_timeout()
+  function display_current_energy_usage() {
+    $("#energy-usage-display").text(`Energy usage: ${thermo.energy_usage()}`)
+    $("#display").attr('class', thermo.energy_usage())
   }
 
-  function down_1_click() {
-    clearInterval(message_timeout);
-    try {
-      thermo.down(1);
-      $("#message-display").text("Temperature decreased");
-      display_current_temp();
-    } catch (e) {
-      $("#message-display").text(e);
-    }
-    message_timeout = default_message_timeout()
+  function display_current_power_saving() {
+    $("#power-saving-mode-display").text(`Power Saving: ${thermo.power_saving ? "ON" : "OFF"}`);
   }
 
-  function reset_click() {
-    clearInterval(message_timeout);
-    thermo.reset()
-    $("#message-display").text("Temperature reset");
+  function update_display() {
     display_current_temp();
-    message_timeout = default_message_timeout()
-  }
-
-  function switch_power_saving_click() {
-    clearInterval(message_timeout);
-    thermo.switch_power_saving()
-    $("#message-display").text(`Power saver switched ${thermo.power_saving ? "on" : "off"}`);
-    $("#power-saving-mode-display").text(`POWER SAVING IS ${thermo.power_saving ? "ON" : "OFF"}.`);
-    display_current_temp();
-    message_timeout = default_message_timeout()
+    display_current_power_saving();
+    display_current_energy_usage();
   }
 
 });
