@@ -2,6 +2,32 @@ $(document).ready(function () {
 
   var message_timeout;
   var thermo = new Thermostat();
+  //  Get settings from server
+  // set thermo stat
+  // set city select
+  retrieve_settings();
+
+  function retrieve_settings() {
+    $.get('http://localhost:9292/settings', function (data) {
+      var yay = JSON.parse(data)
+      thermo.temp = Number(yay.temperature)
+      thermo.power_saving = yay.psm === "on" ? true : false
+      $('#current-city').val(yay.location);
+      update_display();
+    });
+
+  };
+
+  function update_settings() {
+    $.post("http://localhost:9292/settings", {
+      temperature: thermo.temp,
+      psm: thermo.psm ? "on" : "off",
+      location: $('#current-city').val()
+    });
+  }
+
+
+
   var message_display = $("#message-display")
   update_display();
 
@@ -16,8 +42,9 @@ $(document).ready(function () {
     clearInterval(message_timeout);
     try {
       thermo.up(1);
-      message_display.text("Temperature increased");
+      update_settings();
       update_display();
+      message_display.text("Temperature increased");
     } catch (e) {
       message_display.text("Maximum temperature reached.");
     }
@@ -28,8 +55,9 @@ $(document).ready(function () {
     clearInterval(message_timeout);
     try {
       thermo.down(1);
-      message_display.text("Temperature decreased");
+      update_settings();
       update_display();
+      message_display.text("Temperature decreased");
     } catch (e) {
       message_display.text("Minimum temperature reached.");
     }
@@ -39,16 +67,18 @@ $(document).ready(function () {
   function reset_click() {
     clearInterval(message_timeout);
     thermo.reset()
-    message_display.text("Temperature reset");
+    update_settings();
     update_display();
+    message_display.text("Temperature reset");
     message_timeout = default_message_timeout()
   }
 
   function switch_power_saving_click() {
     clearInterval(message_timeout);
     thermo.switch_power_saving()
-    message_display.text(`Power saver switched ${thermo.power_saving ? "on" : "off"}`);
+    update_settings();
     update_display();
+    message_display.text(`Power saver switched ${thermo.power_saving ? "on" : "off"}`);
     message_timeout = default_message_timeout()
   }
 
@@ -86,6 +116,7 @@ $(document).ready(function () {
   // Weather API
   $('#current-city').change(function () {
     event.preventDefault();
+    update_settings();
     display_weather();
   });
 
